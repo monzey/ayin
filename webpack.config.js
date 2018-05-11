@@ -6,30 +6,36 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
+  entry: './src/index.js',
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(jsx|js)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
       },
       {
-        test: /\.css$/,
-        use: {
-          loader: "style-loader"
-        },
-        use: {
-          loader: "css-loader",
-          options: {
-            modules: true,
-            importLoaders: 1,
-            localIdentName: "[name]_[local]_[hash:base64]",
-            sourceMap: true,
-            minimize: true
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: "[name]_[local]_[hash:base64]",
+              sourceMap: true,
+              minimize: true
+            }
+          },
+          {
+            loader: 'sass-loader'
           }
-        }
+        ]
       }
     ]
   },
