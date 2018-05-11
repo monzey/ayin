@@ -6,15 +6,23 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
+  resolve: {
+    extensions: [ ".ts", ".tsx", ".js", ".tsx" ]
+  },
   module: {
     rules: [
       {
-        test: /\.(jsx|js)$/,
+        test: /\.tsx$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: "awesome-typescript-loader"
         }
+      },
+      {
+        test: /\.js$/,
+        enforce: "pre",
+        loader: "source-map-loader"
       },
       {
         test: /\.scss$/,
@@ -23,21 +31,27 @@ module.exports = {
             loader: "style-loader"
           },
           {
-            loader: "css-loader",
+            loader: "typings-for-css-modules-loader",
             options: {
               modules: true,
               importLoaders: 1,
               localIdentName: "[name]_[local]_[hash:base64]",
               sourceMap: true,
-              minimize: true
+              minimize: true,
+              namedExport: true,
+              camelCase: true
             }
           },
           {
-            loader: 'sass-loader'
+            loader: "sass-loader"
           }
         ]
       }
     ]
   },
-  plugins: [htmlPlugin]
+  plugins: [htmlPlugin],
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM",
+  }
 }
