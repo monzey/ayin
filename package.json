@@ -1,0 +1,25 @@
+{
+  "name": "ayin",
+  "version": "1.0.0",
+  "description": "UI for managing congregation contact informations",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monzey/ayin.git"
+  },
+  "author": "Maxime Bertrand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/monzey/ayin/issues"
+  },
+  "homepage": "https://github.com/monzey/ayin#readme",
+  "devDependencies": {
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3"
+  }
+}
